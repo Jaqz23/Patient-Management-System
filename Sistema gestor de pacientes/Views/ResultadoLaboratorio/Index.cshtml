@@ -1,0 +1,51 @@
+﻿@using SGP.Core.Application.ViewModels.ResultadoLaboratorio
+@model List<ResultadoLaboratorioViewModel>
+
+@{
+    ViewData["Title"] = "Mantenimiento de Resultados de Laboratorio";
+}
+
+<div class="container-fluid mt-4">
+    <h2 class="text-center">Resultados de Laboratorio Pendientes</h2>
+
+    
+    <form method="post" asp-action="FiltrarPorCedula" class="d-flex justify-content-center mt-3">
+        <input type="text" name="cedula" class="form-control w-25 me-2" placeholder="Ingrese la cédula del paciente" required />
+        <button type="submit" class="btn btn-outline-primary">Buscar</button>
+    </form>
+
+    @if (Model == null || Model.Count == 0)
+    {
+        <div class="alert alert-warning text-center mt-4">
+            <h4>No hay resultados pendientes en este momento.</h4>
+        </div>
+    }
+    else
+    {
+        
+        <table class="table table-bordered text-center mt-3">
+            <thead class="table-dark">
+                <tr>
+                    <th>Paciente</th>
+                    <th>Cédula</th>
+                    <th>Prueba de Laboratorio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var resultado in Model)
+                {
+                    <tr>
+                        <td>@resultado.PacienteNombre</td>
+                        <td>@resultado.PacienteCedula</td> 
+                        <td>@resultado.PruebaNombre</td>
+                        <td>
+                            <a asp-action="Reportar" asp-route-id="@resultado.Id" class="btn btn-sm btn-outline-success">📝 Reportar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+</div>

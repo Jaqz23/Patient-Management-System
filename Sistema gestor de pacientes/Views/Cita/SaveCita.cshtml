@@ -1,0 +1,79 @@
+﻿@using SGP.Core.Domain.Enums
+@using SGP.Core.Application.ViewModels.Cita
+@model SaveCitaViewModel
+
+@{
+    ViewData["Title"] = "Crear Cita";
+}
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-header bg-dark text-light">
+                    <h4>Crear Nueva Cita</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-controller="Cita" asp-action="Crear">
+                        <div class="mb-3">
+                            <label asp-for="PacienteId" class="form-label">Paciente:</label>
+                            <select asp-for="PacienteId" class="form-select" required>
+                                <option value="">Seleccione un paciente</option>
+                                @if (ViewBag.Pacientes != null)
+                                {
+                                    @foreach (var paciente in ViewBag.Pacientes)
+                                    {
+                                        <option value="@paciente.Id">@paciente.Nombre @paciente.Apellido</option>
+                                    }
+                                }
+                            </select>
+                            <span asp-validation-for="PacienteId" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="MedicoId" class="form-label">Médico:</label>
+                            <select asp-for="MedicoId" class="form-select" required>
+                                <option value="">Seleccione un médico</option>
+                                @if (ViewBag.Medicos != null)
+                                {
+                                    @foreach (var medico in ViewBag.Medicos)
+                                    {
+                                        <option value="@medico.Id">@medico.Nombre @medico.Apellido</option>
+                                    }
+                                }
+                            </select>
+                            <span asp-validation-for="MedicoId" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Fecha" class="form-label">Fecha de la Cita:</label>
+                            <input type="date" asp-for="Fecha" class="form-control" required />
+                            <span asp-validation-for="Fecha" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Hora" class="form-label">Hora de la Cita:</label>
+                            <input type="time" asp-for="Hora" class="form-control" required />
+                            <span asp-validation-for="Hora" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Causa" class="form-label">Causa de la Cita:</label>
+                            <textarea asp-for="Causa" class="form-control" rows="3" required></textarea>
+                            <span asp-validation-for="Causa" class="text-danger"></span>
+                        </div>
+
+                        <input type="hidden" asp-for="Estado" value="@EstadoCita.PendienteDeConsulta" />
+                        <button type="submit" class="btn btn-primary w-100">Crear Cita</button>
+                        <a asp-controller="Cita" asp-action="Index" class="btn btn-secondary w-100 mt-2">Cancelar</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Habilitar validaciones del lado del cliente -->
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

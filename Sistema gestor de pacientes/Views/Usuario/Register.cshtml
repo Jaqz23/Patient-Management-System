@@ -1,0 +1,69 @@
+﻿@using SGP.Core.Application.ViewModels.Usuario
+@model SaveUsuarioViewModel
+
+@{
+    ViewData["Title"] = "Registro";
+}
+
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card">
+                <div class="card-header bg-dark text-light">
+                    <h4>Registro de Administrador</h4>
+                </div>
+                <div class="card-body">
+                   
+                    <form method="post" asp-controller="Usuario" asp-action="Register">
+                        <div class="mb-3">
+                            <label asp-for="Nombre" class="form-label">Nombre:</label>
+                            <input asp-for="Nombre" class="form-control" />
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Apellido" class="form-label">Apellido:</label>
+                            <input asp-for="Apellido" class="form-control" />
+                            <span asp-validation-for="Apellido" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Correo" class="form-label">Correo:</label>
+                            <input type="email" asp-for="Correo" class="form-control" />
+                            <span asp-validation-for="Correo" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="NombreUsuario" class="form-label">Nombre de usuario:</label>
+                            <input asp-for="NombreUsuario" class="form-control" />
+                            <span asp-validation-for="NombreUsuario" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ConsultorioNombre" class="form-label">Nombre del Consultorio:</label>
+                            <input asp-for="ConsultorioNombre" class="form-control" />
+                            <span asp-validation-for="ConsultorioNombre" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Contraseña" class="form-label">Contraseña:</label>
+                            <input type="password" asp-for="Contraseña" class="form-control" />
+                            <span asp-validation-for="Contraseña" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ConfirmarContraseña" class="form-label">Confirmar contraseña:</label>
+                            <input type="password" asp-for="ConfirmarContraseña" class="form-control" />
+                            <span asp-validation-for="ConfirmarContraseña" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid gap-2 w-50 mx-auto">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <a asp-controller="Usuario" asp-action="Index" class="btn btn-warning">Volver atrás</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

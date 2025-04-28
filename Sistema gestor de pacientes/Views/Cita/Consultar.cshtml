@@ -1,0 +1,28 @@
+﻿@using SGP.Core.Application.ViewModels.Cita
+@model SaveCitaViewModel
+
+@{
+    ViewData["Title"] = "Consultar Cita";
+}
+
+<div class="container mt-4">
+    <h2>Consultar Cita</h2>
+
+    <form method="post" asp-controller="Cita" asp-action="AsignarPruebas">
+        <input type="hidden" name="citaId" value="@Model.Id" />
+
+        <div class="mb-3">
+            <label class="form-label">Seleccione las pruebas de laboratorio:</label>
+            <select name="pruebaIds" class="form-select" multiple required>
+                @foreach (var prueba in ViewBag.Pruebas)
+                {
+                    <option value="@prueba.Id">@prueba.Nombre</option>
+                }
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Realizar Pruebas</button>
+        <a asp-controller="Cita" asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+

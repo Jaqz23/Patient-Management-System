@@ -1,0 +1,78 @@
+﻿@using SGP.Core.Application.ViewModels.Medico
+@model SaveMedicoViewModel
+
+@{
+    bool editMode = Model.Id != 0;
+    ViewData["Title"] = editMode ? "Editar Médico" : "Crear Médico";
+}
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card">
+                <div class="card-header bg-dark text-light">
+                    <h4>@(editMode ? $"Editando médico: {Model.Nombre} {Model.Apellido}" : "Creando un nuevo médico")</h4>
+                </div>
+                <div class="card-body">
+                    
+                   
+                    <form method="post" asp-controller="Medico" asp-action="@(editMode ? "Editar" : "Crear")" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label asp-for="Nombre" class="form-label">Nombre: </label>
+                            <input type="text" asp-for="Nombre" class="form-control" required />
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Apellido" class="form-label">Apellido: </label>
+                            <input type="text" asp-for="Apellido" class="form-control" required />
+                            <span asp-validation-for="Apellido" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Correo" class="form-label">Correo Electrónico: </label>
+                            <input type="email" asp-for="Correo" class="form-control" required />
+                            <span asp-validation-for="Correo" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Telefono" class="form-label">Teléfono: </label>
+                            <input type="text" asp-for="Telefono" class="form-control" required />
+                            <span asp-validation-for="Telefono" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Cedula" class="form-label">Cédula: </label>
+                            <input type="text" asp-for="Cedula" class="form-control" required />
+                            <span asp-validation-for="Cedula" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="File" class="form-label">Foto del Médico:</label>
+                            @if (editMode)
+                            {
+                                <input asp-for="File" class="form-control" />
+                                <br />
+                                <img src="@Model.Foto" alt="Foto Médico" class="img-thumbnail" style="width: 150px; height: 150px;">
+                            }
+                            else
+                            {
+                                <input required asp-for="File" class="form-control" />
+                            }
+                            <span asp-validation-for="File" class="text-danger"></span>
+                        </div>
+
+                        <input type="hidden" asp-for="Id" />
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <a asp-controller="Medico" asp-action="Index" class="btn btn-warning">Volver atrás</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Habilitar validaciones del lado del cliente -->
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

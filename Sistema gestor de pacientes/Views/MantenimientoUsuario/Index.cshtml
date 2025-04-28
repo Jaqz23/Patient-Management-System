@@ -1,0 +1,51 @@
+﻿@using SGP.Core.Application.ViewModels.MantenimientoUsuario
+@model List<MantenimientoUsuarioViewModel>
+@{
+    ViewData["Title"] = "Usuarios";
+}
+
+<div class="container-fluid">
+    <div class="row mb-3">
+        <div class="d-flex justify-content-end mt-3">
+            <a asp-controller="MantenimientoUsuario" asp-action="CrearUsuario" class="btn btn-outline-success">Crear nuevo usuario</a>
+        </div>
+    </div>
+
+    <div class="row">
+        @if (Model == null || Model.Count == 0)
+        {
+            <h2>No hay usuarios registrados</h2>
+        }
+        else
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Correo</th>
+                        <th>Nombre de Usuario</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Nombre</td>
+                            <td>@item.Apellido</td>
+                            <td>@item.Correo</td>
+                            <td>@item.NombreUsuario</td>
+                            <td>@item.Rol</td>
+                            <td>
+                                <a asp-controller="MantenimientoUsuario" asp-action="EditarUsuario" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info">Editar</a>
+                                <a asp-controller="MantenimientoUsuario" asp-action="EliminarUsuario" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>

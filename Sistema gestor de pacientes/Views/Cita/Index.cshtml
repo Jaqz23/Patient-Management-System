@@ -1,0 +1,80 @@
+﻿@using SGP.Core.Application.ViewModels.Cita
+@model List<CitaViewModel>
+
+@{
+    ViewData["Title"] = "Mantenimiento de Citas";
+}
+
+<div class="container-fluid mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Lista de Citas</h2>
+        <a asp-controller="Cita" asp-action="Crear" class="btn btn-outline-success">➕ Nueva Cita</a>
+    </div>
+
+
+    @if (Model == null || Model.Count == 0)
+    {
+        <div class="alert alert-warning text-center">
+            <h4>No hay citas registradas en este consultorio.</h4>
+        </div>
+    }
+    else
+    {
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>Paciente</th>
+                    <th>Médico</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Causa</th>
+                    <th>Estado</th>
+                    <th class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var cita in Model)
+                {
+                    <tr>
+                        <td>@cita.PacienteNombre</td>
+                        <td>@cita.MedicoNombre</td>
+                        <td>@cita.Fecha.ToString("dd/MM/yyyy")</td>
+                        <td>@cita.Hora</td>
+                        <td>@cita.Causa</td>
+                        <td>
+                            @if (cita.Estado == "PendienteDeConsulta")
+                            {
+                                <span>Pendiente de consulta</span>
+                            }
+                            else if (cita.Estado == "PendienteDeResultados")
+                            {
+                                <span>Pendiente de Resultados</span>
+                            }
+                            else
+                            {
+                                <span>Completada</span>
+                            }
+                        </td>
+                        <td class="text-center">
+                            <!-- Botones de acciones segun el estado de la cita -->
+                            @if (cita.Estado == "PendienteDeConsulta")
+                            {
+                                <a asp-controller="Cita" asp-action="Consultar" asp-route-id="@cita.Id" class="btn btn-sm btn-outline-primary">Consultar</a>
+                            }
+                            else if (cita.Estado == "PendienteDeResultados")
+                            {
+                                <a asp-controller="Cita" asp-action="ConsultarResultados" asp-route-id="@cita.Id" class="btn btn-sm btn-outline-info">Consultar Resultados</a>
+                            }
+                            else if (cita.Estado == "Completada")
+                            {
+                                <a asp-controller="Cita" asp-action="VerResultados" asp-route-id="@cita.Id" class="btn btn-sm btn-outline-success">Ver Resultados</a>
+                            }
+
+                            <a asp-controller="Cita" asp-action="Eliminar" asp-route-id="@cita.Id" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

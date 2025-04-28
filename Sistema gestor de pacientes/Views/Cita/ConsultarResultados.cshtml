@@ -1,0 +1,46 @@
+﻿@using SGP.Core.Application.ViewModels.ResultadoLaboratorio
+@model List<ResultadoLaboratorioViewModel>
+
+@{
+    ViewData["Title"] = "Consultar Resultados";
+    int citaId = ViewBag.CitaId;
+}
+
+<div class="container-fluid mt-4">
+    <h2 class="text-center">Resultados de Laboratorio</h2>
+
+    @if (Model == null || Model.Count == 0)
+    {
+        <div class="alert alert-warning text-center">
+            <h4>No hay resultados registrados para esta cita.</h4>
+        </div>
+    }
+    else
+    {
+        <table class="table table-bordered text-center mt-3">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nombre de la Prueba</th>
+                    <th>Estado</th>
+                    <th>Resultado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var resultado in Model)
+                {
+                    <tr>
+                        <td>@resultado.PruebaNombre</td>
+                        <td>@resultado.Estado</td>
+                        <td>@(string.IsNullOrEmpty(resultado.Resultado) ? "Pendiente" : resultado.Resultado)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    <div class="d-flex justify-content-between mt-4">
+        <a asp-action="CerrarResultados" class="btn btn-secondary">Cerrar Resultados</a>
+        <a asp-action="CompletarCita" asp-route-id="@citaId" class="btn btn-success">Completar Cita</a>
+    </div>
+</div>
+
