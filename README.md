@@ -43,7 +43,7 @@ The Patient Management System is designed to manage the different operations of 
 ## 📸 Project Image
 
 ### Home Menu
-![Home Menu](home.png)
+![Home Menu](https://github.com/Jaqz23/Patient-Management-System/blob/8ad197297b8bb2be5a0b4edc9ee6bd694c5b2855/home.png)
 
 
 ## 📋 Prerequisites
@@ -87,5 +87,4 @@ Before running the Patient Management System, make sure you have the following i
    Update-Database
 
 7. Run the project:
-    - Press F5 or click the Run button.
-    -The application will launch automatically in your default web browser.
+    - Press F5 or click the Run button. The application will launch automatically in your default web browser.
