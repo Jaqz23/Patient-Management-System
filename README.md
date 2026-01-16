@@ -2,7 +2,7 @@
 
 This project is a Patient Management System developed with **ASP.NET Core MVC** (.NET 8) following the **Onion Architecture** pattern.
 
-## 📖 About the Project
+##  About the Project
 
 The Patient Management System is designed to manage the different operations of a healthcare clinic, offering features such as:
 
@@ -14,7 +14,7 @@ The Patient Management System is designed to manage the different operations of 
 - **Lab Results Management (Assistant only)**: Report lab results and manage pending results.
 - **Appointments Management (Assistant only)**: Schedule, consult, and complete patient appointments.
 
-## 🖥️ Technologies Used
+##  Technologies Used
 
 ### Frontend
 - HTML
@@ -40,13 +40,13 @@ The Patient Management System is designed to manage the different operations of 
 ### Database
 - SQL Server
 
-## 📸 Project Image
+##  Project Image
 
 ### Home Menu
 ![Home Menu](https://github.com/Jaqz23/Patient-Management-System/blob/8ad197297b8bb2be5a0b4edc9ee6bd694c5b2855/home.png)
 
 
-## 📋 Prerequisites
+##  Prerequisites
 
 Before running the Patient Management System, make sure you have the following installed:
 
@@ -54,7 +54,7 @@ Before running the Patient Management System, make sure you have the following i
 - ASP.NET Core 8
 - SQL Server (local or remote)
 
-## 🚀 Installation
+##  Installation
 
 1. **Download** the project or clone it.
    
